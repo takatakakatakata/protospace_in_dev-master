@@ -5,7 +5,7 @@ class CapturedImage < ActiveRecord::Base
 
   enum status: %i(main sub)
 
-  validates :content,
-            :status,
-            presence: true
+  # validates :content,
+  #           :status,
+  #           presence: true
 end
