@@ -6,7 +6,6 @@
         = prototype.title
       .proto-meta
         .proto-user
-          = link_to '削除', "/prototypes/#{prototype.id}" , method: :delete
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
           = prototype.posted_date
