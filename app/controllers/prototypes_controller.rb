@@ -18,6 +18,10 @@ class PrototypesController < ApplicationController
       redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
      end
   end
+  def destroy
+    protoype = Prototype.find(params[:id])
+    protoype.destroy
+  end
 
   def show
   end
