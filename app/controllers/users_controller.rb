@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     redirect_to :root, notice: 'Your user infomation was successfully updated'
   end
 
+  def destroy
+     prototype = Prototype.find(params[:id])
+     prototype.destroy
+  end
+
   private
 
   def set_user
