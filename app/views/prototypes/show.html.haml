@@ -13,6 +13,14 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+    - if @prototype.user_id == current_user.id
+      .col-md-3
+        %ul.proto-tag-list.list-inline
+          %li
+            %a{href: "/prototypes/#{@prototype.id}/edit", class: "btn btn-default"} Edit
+          %li
+            = link_to 'Delete', "/prototypes/#{@prototype.id}" ,class:"btn btn-default", method: :delete
+            
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
