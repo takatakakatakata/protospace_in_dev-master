@@ -6,5 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :prototypes
 
+    # いいね機能のアソシエーション
+  has_many :likes, dependent: :destroy
+  has_many :like_prototypes, through: :likes, source: :prototypes
+
   validates :name, presence: true
 end

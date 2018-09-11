@@ -302,10 +302,15 @@ body {
   .proto-meta {
     overflow: hidden;
     font-size: 1.2rem;
-    padding: 10px 0;
+    padding: 10px;
+    display: flex;
 
     .proto-user {
-      float: left;
+      padding-right: 15px;
+    }
+
+    .proto-likes {
+      padding-right: 15px;
     }
 
     .proto-posted {
@@ -633,4 +638,9 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+
+/* -- glyphicon ------------------------------------ */
+.glyphicon{
+  color: red;
 }

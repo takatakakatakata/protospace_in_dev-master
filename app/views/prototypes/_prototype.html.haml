@@ -7,5 +7,7 @@
       .proto-meta
         .proto-user
           = link_to prototype.user.name, user_path(prototype.user)
+        .proto-likes
+          = render 'likes/like_links', prototype: prototype
         .proto-posted
           = prototype.posted_date
