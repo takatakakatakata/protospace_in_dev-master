@@ -35,10 +35,10 @@
           %h4 Tag List
       .row
         .col-md-3
-          %input#prototype_tags_0{:name => "prototype[tags][0]", :placeholder => "ex) Web", :required => "required", :type => "text"}/
+          %input#prototype_tags_0{word: "prototype[tags][0]", :placeholder => "ex) Web", :required => "required", :type => "text"}/
         .col-md-3
-          %input#prototype_tags_1{:name => "prototype[tags][1]", :placeholder => "ex) Rails", :type => "text"}/
+          %input#prototype_tags_1{word: "prototype[tags][1]", :placeholder => "ex) Rails", :type => "text"}/
         .col-md-3
-          %input#prototype_tags_2{:name => "prototype[tags][2]", :placeholder => "ex) UI/UX", :type => "text"}/
+          %input#prototype_tags_2{word: "prototype[tags][2]", :placeholder => "ex) UI/UX", :type => "text"}/
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
