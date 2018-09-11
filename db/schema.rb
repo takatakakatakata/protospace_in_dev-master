@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180910004249) do
+ActiveRecord::Schema.define(version: 20180911100622) do
 
   create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string  "content"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20180910004249) do
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "title"
     t.string   "catch_copy"
-    t.text     "concept",    limit: 65535
+    t.text     "concept",     limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "likes_count"
     t.index ["user_id"], name: "index_prototypes_on_user_id", using: :btree
   end
 
