@@ -29,3 +29,4 @@ end
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', '~> 0.18.4', group: :production
 gem 'rails_12factor', group: :production
+gem 'kaminari'
