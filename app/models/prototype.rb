@@ -3,6 +3,10 @@ class Prototype < ActiveRecord::Base
   has_many :captured_images, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  # いいね機能のアソシエーション
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
+
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
   validates :title,
@@ -24,5 +28,9 @@ class Prototype < ActiveRecord::Base
 
   def posted_date
     created_at.strftime('%b %d %a')
+  end
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
   end
 end
