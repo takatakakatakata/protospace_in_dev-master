@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.all.page(params[:page]).per(2);
   end
 
   def new
@@ -27,6 +27,7 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find_by(id: params[:id])
+    @prototype.captured_images.find_by(id: params[:id])
   end
 
   def show

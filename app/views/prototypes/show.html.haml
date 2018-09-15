@@ -20,7 +20,7 @@
           %li
             %a{href: "/prototypes/#{@prototype.id}/edit", class: "btn btn-default"} Edit
           %li
-            %a{href: "#", class: "btn btn-default"} Delete
+            =link_to "DELETE","/prototypes/#{@prototype.id}",method: :delete,class:"btn btn-default"
         %li
           .btn.btn-default.button{:id => "likes_buttons_#{@prototype.id}"}
             = render partial: "likes/like",locals: {prototype:@prototype}
