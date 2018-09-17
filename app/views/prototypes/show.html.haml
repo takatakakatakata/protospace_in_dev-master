@@ -49,3 +49,7 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
+
+    =form_for [@prototype,@comment] do |f|
+      =f.text_field :text, placeholder:"ここにコメントを入力"
+      =f.submit "send"
