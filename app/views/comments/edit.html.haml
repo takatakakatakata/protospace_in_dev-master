@@ -1,0 +1,3 @@
+=form_for [@prototype,@comment] ,class:"comment_form",id:"new_comment" do |f|
+  =f.text_field :text,id:"comment_field", placeholder:"ここにコメントを入力"
+  =f.submit "send",id:"comment_button"

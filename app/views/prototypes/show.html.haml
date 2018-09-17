@@ -50,6 +50,12 @@
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
 
-    =form_for [@prototype,@comment] do |f|
-      =f.text_field :text, placeholder:"ここにコメントを入力"
-      =f.submit "send"
+    =form_for [@prototype,@comment] ,class:"comment_form",id:"new_comment" do |f|
+      =f.text_field :text,id:"comment_field", placeholder:"ここにコメントを入力"
+      =f.submit "send",id:"comment_button"
+
+    .comment_list
+      - @comments.each do |comment|
+        =comment.text
+        = link_to "DELETE","/prototypes/#{comment.prototype_id}/comments/#{comment.id}",method: :delete,class:"btn btn-default"
+        = link_to "EDIT","/prototypes/#{comment.prototype_id}/comments/#{comment.id}/edit",class:"btn btn-default"
