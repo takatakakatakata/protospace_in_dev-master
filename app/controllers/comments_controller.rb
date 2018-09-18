@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only:[:destroy,:edit]
+  before_action :set_comment, only:[:destroy,:edit,:update]
   def create
     @comment = Comment.create(comment_params)
     respond_to do |format|
@@ -18,8 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.new(comment_params)
-    if @comment.save
+    if @comment.update(comment_params)
       redirect_to root_path ,notice: 'コメントを編集しました'
     else
       redirect_to action: :edit
