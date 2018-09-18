@@ -12,10 +12,30 @@
 .gray{
   color:gray;
 }
-.icon{
-  height:64px;
-  width:64px;
-}
-.comment_list{
-  width:350px;
+
+.comment_lists{
+  width:400px;
+  .comment_list{
+    width:350px;
+    height:180px;
+    position:relative;
+    .comment_user_name{
+      padding:10px 0 0 90px;
+    }
+    .comment_text{
+      padding:0 0 0 90px;
+      width:130px;
+    }
+    .icon{
+      height:64px;
+      width:64px;
+      position:absolute;
+      top:10px;
+      left:10px;
+    }
+    .comment_list--buttons{
+      margin-top:30px;
+      float:left;
+    }
+  }
 }

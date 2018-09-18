@@ -4,11 +4,19 @@ $(function(){
   var img = `<img src="${img_url}" class="icon">`;
   var prototype_id = $(comment.prototype_id)[0]
   var comment_id = $(comment.id)[0]
-  var html = `${comment.text}
-              ${comment.user_name}
-              ${img}
-              <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default" data-method="delete" >DELETE</a>
-              <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default">EDIT</a>
+  var html = `<div class="comment_list">
+                ${img}
+                <h3 class="comment_user_name">
+                  ${comment.user_name}
+                </h3>
+                <p class="comment_text">
+                  ${comment.text}
+                </p>
+                <div class="comment_list--buttons">
+                <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default" data-method="delete" >DELETE</a>
+                <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default">EDIT</a>
+                </div>
+              </div>
               `
   return html;
   }
@@ -27,7 +35,7 @@ $(function(){
     })
     .done(function(json){
       html = Build_Comment_html(json);
-      $('.comment_list').append(html);
+      $('.comment_lists').append(html);
       $('#comment_button').prop("disabled",false);
       $('#comment_field').val("");
       })
