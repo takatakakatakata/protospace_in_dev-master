@@ -1,8 +1,7 @@
 class CreateTags < ActiveRecord::Migration[5.0]
   def change
     create_table :tags do |t|
-      t.string :word, null: false
-      t.timestamps
+      t.string :tag, null: false, unique: true
     end
   end
 end
