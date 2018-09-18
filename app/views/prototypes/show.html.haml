@@ -56,6 +56,8 @@
 
     .comment_list
       - @comments.each do |comment|
-        =comment.text
+        =image_tag(comment.user.avatar,class:"icon")
+        =simple_format comment.user.name
+        =simple_format comment.text
         = link_to "DELETE","/prototypes/#{comment.prototype_id}/comments/#{comment.id}",method: :delete,class:"btn btn-default"
         = link_to "EDIT","/prototypes/#{comment.prototype_id}/comments/#{comment.id}/edit",class:"btn btn-default"

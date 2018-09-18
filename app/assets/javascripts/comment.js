@@ -1,6 +1,15 @@
 $(function(){
   function Build_Comment_html(comment){
-  var html = `${comment.text}`
+  var img_url = $(comment.avatar_url)[0].url
+  var img = `<img src="${img_url}" class="icon">`;
+  var prototype_id = $(comment.prototype_id)[0]
+  var comment_id = $(comment.id)[0]
+  var html = `${comment.text}
+              ${comment.user_name}
+              ${img}
+              <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default" data-method="delete" >DELETE</a>
+              <a href="/prototypes/${prototype_id}/comments/${comment_id}" class="btn btn-default">EDIT</a>
+              `
   return html;
   }
 

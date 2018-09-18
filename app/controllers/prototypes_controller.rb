@@ -16,7 +16,7 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to action: :new, alert: 'YNew prototype was unsuccessfully created'
+      redirect_to action: :new, alert: 'New prototype was unsuccessfully created'
      end
   end
 
@@ -33,7 +33,7 @@ class PrototypesController < ApplicationController
   def show
     @prototype = Prototype.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all.includes(:user)
+    @comments = @prototype.comments.includes(:user)
   end
 
   def update
