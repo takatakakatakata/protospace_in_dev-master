@@ -9,3 +9,7 @@
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
           = prototype.posted_date
+      %ul.proto-tag-list.list-inline
+        - prototype.tags.each do |tag|
+          %li
+            %a.btn.btn-default{_pageexpand_: "#{tag[:id]}", href: "/tags/#{tag[:id]}"} #{tag[:tag]}

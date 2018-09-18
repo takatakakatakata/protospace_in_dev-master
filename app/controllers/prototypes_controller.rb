@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.all.includes(:tags)
   end
 
   def new
@@ -14,7 +14,6 @@ class PrototypesController < ApplicationController
   def create
 
     @prototype = Prototype.new(prototype_params)
-    binding.pry
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
