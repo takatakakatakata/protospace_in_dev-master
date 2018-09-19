@@ -14,13 +14,14 @@
         %span.grey-text.text-darken-2
           = prototype.likescount
 - else
-  - if prototype.likescount > 0
-    .vertical_like
-      %i.material-icons.red-text.red favorite
-      %span.red-text
-        = prototype.likescount
-  - else
+  - if prototype.likescount = 0
     .vertical_like
       %i.material-icons.grey-text.text-darken-2.gray favorite_border
       %span.grey-text.text-darken-2
+        = prototype.likescount
+    
+  - else
+    .vertical_like
+      %i.material-icons.red-text.red favorite
+      %span.red-text
         = prototype.likescount
