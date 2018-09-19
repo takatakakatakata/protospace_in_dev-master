@@ -14,7 +14,8 @@
 
 .container.proto-list
   .row
-    = render partial: 'prototypes/prototype', collection: @prototypes
+    - @tag.prototype_tags.each do |prototype_tag|
+      = render partial: 'tags/prototype', locals: {prototype: prototype_tag.prototype}
 
 .text-center
   %ul.pagination
