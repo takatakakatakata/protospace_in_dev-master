@@ -37,8 +37,8 @@ class PrototypesController < ApplicationController
   end
 
   def update
-      @prototype = Prototype.find_by(id: params[:id])
-    if @prototype.update(prototype_params)
+      @prototype = Prototype.find(params[:id])
+    if @prototype.update_attributes(update_prototype_params)
       redirect_to :root, notice: 'New prototype was successfully created'
     else
       redirect_to action: :edit, alert: 'YNew prototype was unsuccessfully created'
@@ -60,4 +60,15 @@ class PrototypesController < ApplicationController
       captured_images_attributes: [:content, :status]
     )
   end
+
+    def update_prototype_params
+    params.require(:prototype).permit(
+      :title,
+      :catch_copy,
+      :concept,
+      :user_id,
+      captured_images_attributes: [:id, :content, :status]
+    )
+  end
+
 end
