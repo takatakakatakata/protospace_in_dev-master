@@ -12,14 +12,15 @@ class PrototypesController < ApplicationController
   end
 
   def create
-
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
+      set_tags
       redirect_to :root, notice: 'New prototype was successfully created'
     else
       redirect_to action: :new, alert: 'YNew prototype was unsuccessfully created'
-     end
+    end
   end
+
   def destroy
     protoype = Prototype.find(params[:id])
     protoype.destroy
@@ -47,6 +48,17 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.find(params[:id])
   end
 
+  def set_tags
+    new_tags = tag_params.to_h
+    @tags = new_tags[:tags_attributes].values
+      @tags.each do |tag|
+        if tag[:tag].present?
+          add_tag = Tag.find_or_create_by(tag: "#{tag[:tag]}")
+          @prototype.tags << add_tag
+        end
+      end
+  end
+
   def prototype_params
     params.require(:prototype).permit(
       :title,
@@ -54,7 +66,11 @@ class PrototypesController < ApplicationController
       :concept,
       :user_id,
       captured_images_attributes: [:content, :status],
-      tags_attributes: [:tag]
+    )
+  end
+  def tag_params
+    params.require(:prototype).permit(
+      tags_attributes: [:tag, :id]
     )
   end
 end
