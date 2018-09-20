@@ -23,7 +23,7 @@
               %li.list-group-item.col-md-4
                 .image-upload#sub_image_uploader
                   = f.fields_for :captured_images do |image|
-                    - subId = ("sub-preview_" + i.to_s)
+                    - subId = ("sub-preview-" + i.to_s)
                     .sub-preview{id: subId}
                     = image.file_field :content, id: "sub-thumbnail","data-id": i
                     = image.hidden_field :status, value: "sub"

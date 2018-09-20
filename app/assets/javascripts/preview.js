@@ -36,7 +36,7 @@ $(function(){
   $('#sub_image_uploader').on('change', '#sub-thumbnail', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview = $("#sub-preview_" + String($(this).data('id')));
+        $preview = $("#sub-preview-" + String($(this).data('id')));
         t = this;
 
     // 画像ファイル以外の場合は何もしない
