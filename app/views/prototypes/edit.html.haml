@@ -34,11 +34,9 @@
           %h4 Concept
           = f.text_area :concept, require: true
       .row
-        -# @prototype.tags.each do |value|
         .col-md-3
+        %h4 Tag List
         = f.fields_for :tags do |tag|
           = tag.text_field :tag, required: "required", type: "text"
-
-
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
