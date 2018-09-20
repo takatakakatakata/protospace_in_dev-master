@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'prototypes#index'
   resources :tags, only: [:index, :show]
   resources :prototypes do
-    resources :tags
+    resources :tags, only: [:destroy]
   end
   resources :users, only: [:show, :edit, :update]
 
