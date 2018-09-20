@@ -51,7 +51,6 @@ $(function(){
     .fail(function(){
       alert('通信に失敗しました');
     });} else{
-      e.preventDefault();
       var current_url = window.location.href;
       redirect_url = current_url.replace(/prototypes.\d+/,"users/sign_in");
       window.location = redirect_url
