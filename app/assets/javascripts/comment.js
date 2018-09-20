@@ -42,7 +42,6 @@ $(function(){
       contentType: false
     })
     .done(function(json){
-      console.log($('.bottom').offset())
       html = Build_Comment_html(json);
       $('.comment_lists').append(html);
       $('#comment_button').prop("disabled",false);
@@ -52,7 +51,10 @@ $(function(){
     .fail(function(){
       alert('通信に失敗しました');
     });} else{
-      window.location = ("http://localhost:3000/users/sign_in");
+      e.preventDefault();
+      var current_url = window.location.href;
+      redirect_url = current_url.replace(/prototypes.\d+/,"users/sign_in");
+      window.location = redirect_url
     }
   });
 });
