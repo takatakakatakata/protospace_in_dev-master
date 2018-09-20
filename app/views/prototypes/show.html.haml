@@ -53,9 +53,9 @@
       - @comments.each do |comment|
         .comment_list
           =image_tag(comment.user.avatar,class:"icon")
-          %h3.comment_user_name 
+          %h3.comment_user_name
             =comment.user.name
-          %p.comment_text  
+          %p.comment_text
             =comment.text
           .comment_list--buttons
             -if user_signed_in? && current_user.id == comment.user_id
