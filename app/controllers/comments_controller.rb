@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only:[:destroy,:edit,:update]
+  before_action :authenticate_user!
   def create
     @comment = Comment.create(comment_params)
     respond_to do |format|

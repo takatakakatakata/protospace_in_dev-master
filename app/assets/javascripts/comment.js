@@ -28,9 +28,11 @@ $(function(){
   }
 
   $('#new_comment').on('submit',function(e){
+    var current_user_id = $('#current_user_id').val();
     e.preventDefault();
     var data = new FormData(this);
     var url = $(this).attr('action');
+    if(current_user_id){
     $.ajax({
       data: data,
       type: 'POST',
@@ -49,6 +51,8 @@ $(function(){
       })
     .fail(function(){
       alert('通信に失敗しました');
-    });
+    });} else{
+      window.location = ("http://localhost:3000/users/sign_in");
+    }
   });
 });
