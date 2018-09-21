@@ -12,5 +12,4 @@ Rails.application.routes.draw do
 
   post   '/like/:prototype_id' => 'likes#like',   as: 'like'
   delete '/like/:prototype_id' => 'likes#unlike', as: 'unlike'
-
 end

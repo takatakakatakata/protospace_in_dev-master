@@ -13,6 +13,7 @@ class PrototypesController < ApplicationController
 
   def create
     @prototype = Prototype.new(prototype_params)
+
     if @prototype.save
       set_tags
       redirect_to :root, notice: 'New prototype was successfully created'
@@ -69,7 +70,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status],
+      captured_images_attributes: [:id, :content, :status],
     )
   end
   def tag_params
@@ -83,19 +84,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status],
+      captured_images_attributes: [:id, :content, :status],
       tags_attributes: [:tag, :id]
     )
   end
-
-    def update_prototype_params
-    params.require(:prototype).permit(
-      :title,
-      :catch_copy,
-      :concept,
-      :user_id,
-      captured_images_attributes: [:id, :content, :status]
-    )
-  end
-
 end
