@@ -1,9 +1,17 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
+
   has_many :prototype_tag, dependent: :destroy
   has_many :tags, through: :prototype_tag
 
+
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  # いいね機能のアソシエーション
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
   accepts_nested_attributes_for :tags
@@ -12,6 +20,10 @@ class Prototype < ActiveRecord::Base
             # :catch_copy,
             # :concept,
             presence: true
+
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
 
   def reject_sub_images(attributed)
     attributed['content'].blank?
@@ -23,5 +35,9 @@ class Prototype < ActiveRecord::Base
 
   def posted_date
     created_at.strftime('%b %d %a')
+  end
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
   end
 end

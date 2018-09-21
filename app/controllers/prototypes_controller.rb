@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
 
   def index
-    @prototypes = Prototype.all.includes(:tags)
+    @prototypes = Prototype.all.includes(:tags).page(params[:page]).per(4)
   end
 
   def new
@@ -17,8 +17,8 @@ class PrototypesController < ApplicationController
       set_tags
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to action: :new, alert: 'YNew prototype was unsuccessfully created'
-    end
+      redirect_to action: :new, alert: 'New prototype was unsuccessfully created'
+     end
   end
 
   def destroy
@@ -28,13 +28,17 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find_by(id: params[:id])
+    @prototype.captured_images.find_by(id: params[:id])
   end
 
   def show
+    @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def update
-      prototype = Prototype.find(params[:id])
+    prototype = Prototype.find(params[:id])
     if prototype = prototype.update(all_params)
       redirect_to :root, notice: 'New prototype was successfully created'
     else
@@ -83,4 +87,15 @@ class PrototypesController < ApplicationController
       tags_attributes: [:tag, :id]
     )
   end
+
+    def update_prototype_params
+    params.require(:prototype).permit(
+      :title,
+      :catch_copy,
+      :concept,
+      :user_id,
+      captured_images_attributes: [:id, :content, :status]
+    )
+  end
+
 end

@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, UserImageUploader
 
   has_many :prototypes
+  has_many :likes
+  has_many :comments
+
+    # いいね機能のアソシエーション
+  has_many :likes, dependent: :destroy
+  has_many :like_prototypes, through: :likes, source: :prototypes
 
   validates :name, presence: true
 end

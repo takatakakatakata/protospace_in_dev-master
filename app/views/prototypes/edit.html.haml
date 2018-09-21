@@ -14,7 +14,7 @@
             = f.fields_for :captured_images do |image|
               %img
               -# = image.file_field :content, required: true
-                            = image.file_field :content
+              = image.file_field   :content
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
@@ -24,7 +24,7 @@
                 .image-upload
                   = f.fields_for :captured_images do |image|
                     %img
-                    = image.file_field :content
+                    = image.file_field   :content
                     = image.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12
