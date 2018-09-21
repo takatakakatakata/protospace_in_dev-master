@@ -8,7 +8,19 @@ class Prototype < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
 
+  has_many :prototype_tag, dependent: :destroy
+  has_many :tags, through: :prototype_tag
+
+
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  # いいね機能のアソシエーション
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
+
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
+  accepts_nested_attributes_for :tags
 
   validates :title,
             # :catch_copy,
