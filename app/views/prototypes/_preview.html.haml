@@ -26,6 +26,7 @@
                   = f.fields_for :captured_images, @prototype.captured_images.sub[i] do |image|
                     - subId = ("sub-preview-" + i.to_s)
                     .sub-preview{id: subId}
+                      -# = image_tag(image.content) if image
                     = image.file_field :content, id: "sub-thumbnail","data-id": i
                     = image.hidden_field :status, value: "sub"
       .row.proto-description
