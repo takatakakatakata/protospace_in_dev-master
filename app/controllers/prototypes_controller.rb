@@ -1,8 +1,8 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
-  PER = 10
+  PER = 25
   def index
-    @prototypes = Prototype.all.page(params[:page]).per(PER)
+    @prototypes = Prototype.all.page(params[:page]).per(10)
   end
 
   def new

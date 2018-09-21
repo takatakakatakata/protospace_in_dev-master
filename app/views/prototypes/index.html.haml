@@ -16,8 +16,8 @@
   .row
     = render partial: 'prototypes/prototype', collection: @prototypes,locals:{likes: @likes}
     .protolists
-
-= paginate @prototypes
+.paginate
+  = paginate @prototypes
 
 / .text-center
 /   %ul.pagination

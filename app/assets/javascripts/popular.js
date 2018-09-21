@@ -33,11 +33,10 @@ $(function(){
     .done(function(json){
       $('.protolists').empty();
       $('.removelist').remove();
+      $('.paginate').remove();
       json.prototypes.forEach(function(prototype){
         var html = build_html(prototype);
         $('.protolists').append(html);
-        var current_page_url = window.location.href;
-        history.pushState(null,null, current_page_url)
       });
     })
     .fail(function(){
