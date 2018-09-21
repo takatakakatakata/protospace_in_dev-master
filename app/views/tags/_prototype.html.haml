@@ -7,8 +7,6 @@
       .proto-meta
         .proto-user
           = link_to prototype.user.name, user_path(prototype.user)
-          .btn.btn-default.button{:id => "likes_buttons_#{prototype.id}"}
-            = render partial: "likes/like",locals: {prototype:prototype}
         .proto-posted
           = prototype.posted_date
       %ul.proto-tag-list.list-inline
