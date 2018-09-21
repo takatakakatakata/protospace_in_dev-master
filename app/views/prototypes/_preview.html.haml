@@ -37,10 +37,11 @@
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
       .row
-        .col-md-3
         %h4 Tag List
-        = f.fields_for :tags do |tag|
-          = tag.text_field :tag, required: "required", type: "text", placeholder: "ex)tag"
+        - 3.times do |i|
+          .col-md-3
+            = f.fields_for :tags do |tag|
+              = tag.text_field :tag, required: "required", type: "text", placeholder: "ex)tag"
       -# .row
       -#   %h4 Tag List
       -#   .col-md-3
