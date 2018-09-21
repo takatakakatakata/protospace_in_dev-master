@@ -1,8 +1,8 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
-
+  PER = 10
   def index
-    @prototypes = Prototype.all.page(params[:page]).per(2)
+    @prototypes = Prototype.all.page(params[:page]).per(PER)
   end
 
   def new
@@ -11,7 +11,7 @@ class PrototypesController < ApplicationController
   end
 
   def popular
-    @prototypes = Prototype.includes(:user).page(params[:page]).per(10).order('likescount DESC')
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(PER).order('likescount DESC')
     respond_to do |format|
       format.html
       format.json
@@ -19,7 +19,7 @@ class PrototypesController < ApplicationController
   end
 
   def newest
-    @prototypes = Prototype.includes(:user).page(params[:page]).per(10).order('created_at DESC')
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(PER).order('created_at DESC')
     respond_to do |format|
       format.html
       format.json
