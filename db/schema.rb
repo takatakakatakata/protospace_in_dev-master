@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180917004626) do
+ActiveRecord::Schema.define(version: 20180919071029) do
 
   create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "content"
@@ -38,15 +38,27 @@ ActiveRecord::Schema.define(version: 20180917004626) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "prototype_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "prototype_id", null: false
+    t.integer "tag_id",       null: false
+    t.index ["prototype_id"], name: "index_prototype_tags_on_prototype_id", using: :btree
+    t.index ["tag_id"], name: "index_prototype_tags_on_tag_id", using: :btree
+  end
+
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "catch_copy"
-    t.text     "concept",    limit: 65535
+    t.text     "concept",     limit: 65535
     t.integer  "user_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "likescount"
     t.index ["user_id"], name: "index_prototypes_on_user_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "tag", null: false
+    t.index ["tag"], name: "index_tags_on_tag", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -76,5 +88,7 @@ ActiveRecord::Schema.define(version: 20180917004626) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "prototypes"
   add_foreign_key "likes", "users"
+  add_foreign_key "prototype_tags", "prototypes"
+  add_foreign_key "prototype_tags", "tags"
   add_foreign_key "prototypes", "users"
 end

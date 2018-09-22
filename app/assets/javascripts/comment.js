@@ -28,9 +28,11 @@ $(function(){
   }
 
   $('#new_comment').on('submit',function(e){
+    var current_user_id = $('#current_user_id').val();
     e.preventDefault();
     var data = new FormData(this);
     var url = $(this).attr('action');
+    if(current_user_id){
     $.ajax({
       data: data,
       type: 'POST',
@@ -40,7 +42,6 @@ $(function(){
       contentType: false
     })
     .done(function(json){
-      console.log($('.bottom').offset())
       html = Build_Comment_html(json);
       $('.comment_lists').append(html);
       $('#comment_button').prop("disabled",false);
@@ -49,6 +50,10 @@ $(function(){
       })
     .fail(function(){
       alert('通信に失敗しました');
-    });
+    });} else{
+      var current_url = window.location.href;
+      redirect_url = current_url.replace(/prototypes.\d+/,"users/sign_in");
+      window.location = redirect_url
+    }
   });
 });

@@ -13,7 +13,6 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
-
     .col-md-4
       %ul.proto-tag-list.list-inline
         - if user_signed_in? && @prototype.user_id == current_user.id
@@ -24,7 +23,6 @@
         %li
           .btn.btn-default.button{:id => "likes_buttons_#{@prototype.id}"}
             = render partial: "likes/like",locals: {prototype:@prototype}
-
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -45,17 +43,22 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - @prototype.tags.each do |tag|
+          %li
+          .card-content.white-text
+            %p= simple_format("#{tag[:tag]}")
+            = link_to '削除', "/prototypes/#{@prototype.id}/tags/#{tag[:id]}", method: :delete
+        -# %li
+        -#   %a{href: "#", class: "btn btn-default"} iPad
+        -# %li
+        -#   %a{href: "#", class: "btn btn-default"} wireframe
     .comment_lists
       - @comments.each do |comment|
         .comment_list
           =image_tag(comment.user.avatar,class:"icon")
-          %h3.comment_user_name 
+          %h3.comment_user_name
             =comment.user.name
-          %p.comment_text  
+          %p.comment_text
             =comment.text
           .comment_list--buttons
             -if user_signed_in? && current_user.id == comment.user_id
@@ -63,7 +66,8 @@
               = link_to "EDIT","/prototypes/#{comment.prototype_id}/comments/#{comment.id}/edit",class:"btn btn-default"
     .bottom
     -if user_signed_in?
-      =form_for [@prototype,@comment] ,class:"comments_form",id:"new_comment" do |f|
-        =f.text_field :text,id:"comment_field",class:"text_field", placeholder:"ここにコメントを入力"
-        =f.submit "send",id:"comment_button"
-        %input{name:"current_user_id" ,value:"#{current_user.id}",id:"current_user_id",type:"hidden"}
+      %input{name:"current_user_id" ,value:"#{current_user.id}",id:"current_user_id",type:"hidden"}
+    =form_for [@prototype,@comment] ,class:"comments_form",id:"new_comment" do |f|
+      =f.text_field :text,id:"comment_field",class:"text_field", placeholder:"ここにコメントを入力"
+      =f.submit "send",id:"comment_button"
+
