@@ -43,7 +43,9 @@ class Prototype < ActiveRecord::Base
     created_at.strftime('%b %d %a')
   end
 
-  def like_user(user_id)
-   likes.find_by(user_id: user_id)
-  end
+  # 重複記述
+  # def like_user(user_id)
+  #  likes.find_by(user_id: user_id)
+  # end
+
 end

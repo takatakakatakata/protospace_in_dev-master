@@ -13,7 +13,6 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
-
     .col-md-4
       %ul.proto-tag-list.list-inline
         - if user_signed_in? && @prototype.user_id == current_user.id
@@ -24,7 +23,6 @@
         %li
           .btn.btn-default.button{:id => "likes_buttons_#{@prototype.id}"}
             = render partial: "likes/like",locals: {prototype:@prototype}
-
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -50,11 +48,10 @@
           .card-content.white-text
             %p= simple_format("#{tag[:tag]}")
             = link_to '削除', "/prototypes/#{@prototype.id}/tags/#{tag[:id]}", method: :delete
-
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        -# %li
+        -#   %a{href: "#", class: "btn btn-default"} iPad
+        -# %li
+        -#   %a{href: "#", class: "btn btn-default"} wireframe
     .comment_lists
       - @comments.each do |comment|
         .comment_list

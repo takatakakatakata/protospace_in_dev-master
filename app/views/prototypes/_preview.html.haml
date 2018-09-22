@@ -1,4 +1,3 @@
--# = render "prototypes/preview"
 .container.proto-new
   = form_for @prototype do |f|
     = f.hidden_field :user_id, value: current_user.id
@@ -42,5 +41,16 @@
         = f.fields_for :tags, @prototype.tags do |tag|
           .col-md-3
             = tag.text_field :tag, required: "required", type: "text", placeholder: "ex)tag"
+      -# .row
+      -#   %h4 Tag List
+      -#   .col-md-3
+      -#     = f.fields_for :tags do |tag|
+      -#       = tag.text_field :tag, placeholder: "ex) Web", required: "required", type: "text"
+      -#   .col-md-3
+      -#     = f.fields_for :tags do |tag|
+      -#       = tag.text_field :tag, placeholder: "ex) Rails", type: "text"
+      -#   .col-md-3
+      -#     = f.fields_for :tags do |tag|
+      -#       = tag.text_field :tag, placeholder: "ex) UI/UX", type: "text"
       .row.text-center.proto-btn
         = f.submit "save", id: "button", class: "btn btn-lg btn-primary btn-block"
