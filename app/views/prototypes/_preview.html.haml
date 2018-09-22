@@ -38,10 +38,9 @@
           = f.text_area :concept, require: true, placeholder: "Input Concept"
       .row
         %h4 Tag List
-        - 3.times do |i|
+        = f.fields_for :tags, @prototype.tags do |tag|
           .col-md-3
-            = f.fields_for :tags do |tag|
-              = tag.text_field :tag, required: "required", type: "text", placeholder: "ex)tag"
+            = tag.text_field :tag, required: "required", type: "text", placeholder: "ex)tag"
       -# .row
       -#   %h4 Tag List
       -#   .col-md-3
