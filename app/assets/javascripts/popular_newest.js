@@ -22,12 +22,6 @@ $(function(){
     return html;
   }
 
-  window.onpopstate = function(event){
-    if (event.persisted) {
-       window.location.reload();
-     }
-   };
-
   ["popular","newest"].forEach(function(type){
     $('#'+type+'_button').on("click",function(e){
     e.preventDefault();
@@ -53,6 +47,6 @@ $(function(){
       alert("並び替えに失敗しました");
     });
   });
-  })
+  });
 
 });

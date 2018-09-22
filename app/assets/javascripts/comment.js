@@ -1,7 +1,7 @@
 $(function(){
   function Build_Comment_html(comment){
   var current_user_id = $('#current_user_id').val();
-  var img_url = $(comment.avatar_url)[0].url
+  var img_url = $(comment.avatar_url)[0].url;
   var img = `<img src="${img_url}" class="icon">`;
   var prototype_id = $(comment.prototype_id)[0];
   var comment_id = $(comment.id)[0];
@@ -12,7 +12,7 @@ $(function(){
                      <a href="/prototypes/${prototype_id}/comments/${comment_id}/edit" class="btn btn-default">EDIT</a>
                    </div>`;
   } else {
-    var buttons = ``;
+    var buttons = "";
   }
   var html = `<div class="comment_list">
                 ${img}
@@ -23,7 +23,7 @@ $(function(){
                   ${comment.text}
                 </p>
                 ${buttons}
-              </div>`
+              </div>`;
   return html;
   }
 
