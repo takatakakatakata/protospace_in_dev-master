@@ -11,6 +11,22 @@ class PrototypesController < ApplicationController
     @prototype.tags.build
   end
 
+  def popular
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(10).order('likescount DESC')
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def newest
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(10).order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def create
     @prototype = Prototype.new(prototype_params)
 
