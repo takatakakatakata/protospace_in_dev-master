@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'prototypes#index'
   get '/prototypes/popular' => 'prototypes#popular'
   get '/prototypes/newest' => 'prototypes#newest'
-
   resources :tags, only: [:index, :show]
   resources :prototypes do
     resources :tags, only: [:destroy]

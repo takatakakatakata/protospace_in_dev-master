@@ -50,9 +50,8 @@ ActiveRecord::Schema.define(version: 20180919071029) do
     t.string   "catch_copy"
     t.text     "concept",     limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "likes_count"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "likescount"
     t.index ["user_id"], name: "index_prototypes_on_user_id", using: :btree
   end

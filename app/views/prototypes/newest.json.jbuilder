@@ -4,4 +4,5 @@ json.prototypes @prototypes do |prototype|
   json.user_name    prototype.user.name
   json.id           prototype.id
   json.posted_date  prototype.posted_date
+  json.user_id      prototype.user.id
 end

@@ -1,6 +1,5 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
-
   def index
     @prototypes = Prototype.all.includes(:tags).page(params[:page]).per(7)
   end
@@ -21,6 +20,22 @@ class PrototypesController < ApplicationController
 
   def newest
     @prototypes = Prototype.includes(:user).page(params[:page]).per(10).order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def popular
+    @prototypes = Prototype.includes(:user).page(params[:page]).order('likescount DESC')
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def newest
+    @prototypes = Prototype.includes(:user).page(params[:page]).order('created_at DESC')
     respond_to do |format|
       format.html
       format.json
@@ -104,4 +119,15 @@ class PrototypesController < ApplicationController
       tags_attributes: [:tag, :id]
     )
   end
+
+    def update_prototype_params
+    params.require(:prototype).permit(
+      :title,
+      :catch_copy,
+      :concept,
+      :user_id,
+      captured_images_attributes: [:id, :content, :status]
+    )
+  end
+
 end
